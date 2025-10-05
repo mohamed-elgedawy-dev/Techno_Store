@@ -10,8 +10,9 @@ namespace Techno_Store
     internal class Data
     {
 
-        
-        public string filePath { get; } = "products.json";
+
+        public string filePath { get; } = Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\products.json");
+
 
 
         public List<Product> Products { get; set; } = new List<Product>();
