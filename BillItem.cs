@@ -18,9 +18,6 @@ namespace Techno_Store
 
         public decimal? Total { get; set; }
 
-        
-
-
     }
 }
 

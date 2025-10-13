@@ -17,11 +17,5 @@ namespace Techno_Store.Interfaces
 
         public bool AskToContinueOrFinish();
 
-
-
-
-
-
-
     }
 }

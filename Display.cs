@@ -14,10 +14,6 @@ namespace Techno_Store
 
         public void DisplayData(DataStor data)
         {
-
-
-
-
             Console.WriteLine("{0,-5} | {1,-25} | {2,10} | {3,7}", "Id", "Name", "Price", "Stock");
             Console.WriteLine(new string('-', 55));
 
@@ -31,13 +27,7 @@ namespace Techno_Store
                        item.Id, item.Name, item.Price, item.Stock);
                 }
             }
-
-
-
         }
-
-       
-
         public decimal? ShowBill(Bill bill)
         {
 

@@ -9,9 +9,6 @@ namespace Techno_Store
 {
     internal class Orders
     {
-       
-   
-        
         public event EventHandler? StockFinished;
 
         public void CheckStock( int productId, int? Amount, DataStor data)
@@ -22,31 +19,16 @@ namespace Techno_Store
             {
                 if (productId == data.Products[i].Id)
                 {
-
                     data.Products[i].Stock -= Amount;
                     currentStock = data.Products[i].Stock;
-
-
                 }
 
             }
-
-
             if (currentStock <= 0)
             {
                 OnStockFinished(EventArgs.Empty);
             }
-
-
-
-
-
-
-
-
         }
-
-
         protected virtual void OnStockFinished(EventArgs e)
         {
             StockFinished?.Invoke(this, e);
@@ -56,8 +38,6 @@ namespace Techno_Store
         {
             Console.WriteLine("Stock finished for the selected product.");
         }
-
-
 
     }
 }

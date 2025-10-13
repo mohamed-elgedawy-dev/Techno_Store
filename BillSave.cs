@@ -28,13 +28,9 @@ namespace Techno_Store
                 Name= customerName
             };
 
-
             string json = JsonSerializer.Serialize(dataToSave, new JsonSerializerOptions { WriteIndented = true });
 
-            
             File.WriteAllText(fileName, json);
-
-
 
         }
 

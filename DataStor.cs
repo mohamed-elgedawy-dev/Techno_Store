@@ -10,7 +10,6 @@ namespace Techno_Store
     internal class DataStor
     {
 
-
         public string filePath { get; } = Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\products.json");
 
         public List<Product> Products { get; set; } = new List<Product>();
@@ -21,8 +20,6 @@ namespace Techno_Store
             string json = File.ReadAllText(filePath);
             Products = JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
         }
-
-
 
         public void SaveChanges(DataStor data)
         {
