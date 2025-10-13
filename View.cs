@@ -13,36 +13,30 @@ namespace Techno_Store
 
         public int ItemAmount { get; set; }
 
-        public string? Name { get; set; }
-
-
         public void Display()
         {
+            Data data = new Data();
 
-           Data data = new Data();
-
-           
             Console.WriteLine("{0,-5} | {1,-25} | {2,10} | {3,7}", "Id", "Name", "Price", "Stock");
-            Console.WriteLine(new string('-', 55)); 
+            Console.WriteLine(new string('-', 55));
 
-            
-            foreach ( var item in data.Products)
+            foreach (var item in data.Products)
             {
-                Console.WriteLine("{0,-5} | {1,-25} | {2,10:N2} | {3,7}",
-                   item.Id, item.Name, item.Price, item.Stock);
+                Console.WriteLine(
+                    "{0,-5} | {1,-25} | {2,10:N2} | {3,7}",
+                    item.Id,
+                    item.Name,
+                    item.Price,
+                    item.Stock
+                );
             }
-
-
-            
         }
 
-
-        public void TakingInputs()
+        public void TakingInputs(BillItem billItem)
         {
             int id;
             string? input;
 
-           
             do
             {
                 Console.Write("Enter product Id: ");
@@ -52,13 +46,9 @@ namespace Techno_Store
                 {
                     Console.WriteLine("❌ Invalid input! Please enter a number between 1 and 20.");
                 }
-
             } while (!int.TryParse(input, out id) || id < 1 || id > 20);
+            billItem.Produc.Id = id;
 
-            ProductId = id;
-            Console.WriteLine($"✅ You entered product Id: {ProductId}");
-
-            
             int amount;
             string? _input;
             do
@@ -70,48 +60,56 @@ namespace Techno_Store
                 {
                     Console.WriteLine("❌ Invalid input! Please enter a positive number.");
                 }
-
             } while (!int.TryParse(_input, out amount) || amount <= 0);
 
             ItemAmount = amount;
             Console.WriteLine($"✅ You entered Amount : {ItemAmount}");
-
-
-
-
-          
-
         }
 
-        public void TakingName()
+        public void TakingCustomerInfo(Person person)
         {
-            Console.Write("Enter your name: ");
-            string? name = Console.ReadLine();
-
-            // Validation
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                Console.WriteLine("Name cannot be empty, please enter a valid name.");
-            }
-            else if (name.Any(char.IsDigit))
-            {
-                Console.WriteLine("Name cannot contain numbers.");
-            }
-            else if (name.Length < 2)
-            {
-                Console.WriteLine("Name is too short.");
-            }
-            else
-            {
-                Console.WriteLine($"Welcome, {name}!");
-            }
-
-
-            Name = name;
+            Console.Write("Enter Customer Name: ");
+            person.Name = Console.ReadLine();
+            Console.Write("Enter Customer Phone: ");
+            person.phone = Console.ReadLine();
+            Console.Write("Enter Customer Email: ");
+            person.Email = Console.ReadLine();
+            Console.Write("Enter Customer Address: ");
+            person.Address = Console.ReadLine();
         }
 
+        public void PrintBill(Bill bill)
+        {
+            #region Print Bill
+            Console.Clear();
 
+            Console.WriteLine("=========== 🧾 Bill ===========");
+            Console.WriteLine(
+                "{0,-25} | {1,10} | {2,8} | {3,12}",
+                "Product",
+                "Price",
+                "Qty",
+                "Total"
+            );
+            Console.WriteLine(new string('-', 65));
+
+            foreach (var item in bill.BillList)
+            {
+                Console.WriteLine(
+                    "{0,-25} | {1,10:N2} | {2,8} | {3,12:N2}",
+                    item.Produc.Name,
+                    item.ItemPrice,
+                    item.Amount,
+                    item.Total
+                );
+            }
+
+            decimal grandTotal = bill.BillList.Sum(i => i.Total);
+
+            Console.WriteLine(new string('-', 65));
+            Console.WriteLine($"Grand Total: {grandTotal:N2}");
+            #endregion
+        }
     }
 }
 // Added for full review PR
-

@@ -9,35 +9,20 @@ namespace Techno_Store
 {
     internal class BillSave
     {
-        private Bill bill;
-        public BillSave()
+        public Bill bill = new Bill();
+
+        public BillSave() { }
+
+        public BillSave(Bill bill)
         {
-            
-        }
-        public BillSave(List<BillItem> list, decimal grandTotal)
-        {
-            string customerName = list[0].CustomerName ?? "Unknown";
+            string fileName = $"{bill.customer.Name}.json";
 
-            
-            string fileName = $"{customerName}.json";
+            string json = JsonSerializer.Serialize(
+                new JsonSerializerOptions { WriteIndented = true }
+            );
 
-            var dataToSave = new
-            {
-                Items = list,
-                GrandTotal = grandTotal
-            };
-
-
-            string json = JsonSerializer.Serialize(dataToSave, new JsonSerializerOptions { WriteIndented = true });
-
-            
             File.WriteAllText(fileName, json);
-
-
-
         }
-
-     
     }
 }
 // Added for full review PR

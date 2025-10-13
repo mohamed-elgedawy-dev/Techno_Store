@@ -8,21 +8,13 @@ namespace Techno_Store
 {
     internal class BillItem
     {
-        public string? ProductName { get; set; }
+        public Product Produc { get; set; }
 
         public int Amount { get; set; }
 
+        public decimal ItemPrice { get; set; }
 
-        public string? CustomerName { get; set; }
-
-        public decimal Price { get; set; }
-
-
-        public decimal Total { get; set; }
-
-        public int GrandTotal { get; set; } 
-
-
+        public decimal Total => ItemPrice * Amount;
     }
 }
 // Added for full review PR

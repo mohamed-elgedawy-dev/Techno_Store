@@ -10,28 +10,16 @@ namespace Techno_Store
     internal class Orders
     {
         public Data data { get; set; } = new Data();
-   
-        
 
-
-        public void MakingOrder( int productId, int Amount)
+        public void MakingOrder(int productId, int Amount)
         {
-            
             for (int i = 0; i < data.Products.Count; i++)
             {
                 if (productId == data.Products[i].Id)
                 {
-
                     data.Products[i].Stock -= Amount;
-
-
                 }
-
-
             }
-
-
-
         }
 
         public void SaveChanges()
@@ -39,7 +27,6 @@ namespace Techno_Store
             string updatedJson = JsonSerializer.Serialize(data.Products);
             File.WriteAllText(data.filePath, updatedJson);
         }
-
     }
 }
 // Added for full review PR
