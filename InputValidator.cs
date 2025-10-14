@@ -6,12 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace Techno_Store
 {
-    internal   class InputValidator
+    internal class InputValidator
     {
-
         public static int? AskForValidProductId(List<int>? validIds = null)
         {
             while (true)
@@ -19,8 +17,10 @@ namespace Techno_Store
                 Console.Write("Enter Product ID (or type 'x' to quit): ");
                 string? input = Console.ReadLine()?.Trim();
 
-                if (!string.IsNullOrEmpty(input) &&
-                    input.Equals("x", StringComparison.OrdinalIgnoreCase))
+                if (
+                    !string.IsNullOrEmpty(input)
+                    && input.Equals("x", StringComparison.OrdinalIgnoreCase)
+                )
                 {
                     return null;
                 }
@@ -38,7 +38,6 @@ namespace Techno_Store
                         return id;
                     }
 
-                    
                     if (validIds.Contains(id))
                     {
                         return id;
@@ -55,16 +54,19 @@ namespace Techno_Store
             }
         }
 
-
-        public static int? AskForPositiveInt(string message = "Enter a number (or type 'x' to quit): ")
+        public static int? AskForPositiveInt(
+            string message = "Enter a number (or type 'x' to quit): "
+        )
         {
             while (true)
             {
                 Console.Write(message);
                 string? input = Console.ReadLine()?.Trim();
 
-                if (!string.IsNullOrEmpty(input) &&
-                    input.Equals("x", StringComparison.OrdinalIgnoreCase))
+                if (
+                    !string.IsNullOrEmpty(input)
+                    && input.Equals("x", StringComparison.OrdinalIgnoreCase)
+                )
                 {
                     return null;
                 }
@@ -82,11 +84,5 @@ namespace Techno_Store
                 }
             }
         }
-
-
-
-       
     }
-
 }
-

@@ -1,6 +1,4 @@
-﻿
-
-namespace Techno_Store
+﻿namespace Techno_Store
 {
     internal class Program
     {
@@ -12,7 +10,7 @@ namespace Techno_Store
             View view = new View();
 
             Bill bill = new Bill();
-           Data data = new Data();
+            Data data = new Data();
             Display display = new Display();
 
             bool continueOrdering = true;
@@ -21,12 +19,9 @@ namespace Techno_Store
             display.CustomerName = view.TakingName();
             do
             {
-
                 display.DisplayData(data);
 
-
                 order.StockFinished += order.Order_StockFinished;
-
 
                 var selectedId = view.TakingId(data);
                 if (selectedId != null)
@@ -48,31 +43,28 @@ namespace Techno_Store
                     order.CheckStock(view.Product.Id, view.ItemAmount, data);
                 }
 
+                bill.BillList.Add(
+                    new BillItem
+                    {
+                        ProductName = view.Product.Name,
+                        Amount = view.ItemAmount,
+                        Price = view.Price,
 
-
-                bill.BillList.Add(new BillItem
-                {
-                    ProductName = view.Product.Name,
-                    Amount = view.ItemAmount,
-                    Price = view.Price,
-
-                    Total = view.Price * view.ItemAmount
-
-
-                });
+                        Total = view.Price * view.ItemAmount,
+                    }
+                );
 
                 data.SaveChanges(data);
 
                 continueOrdering = view.AskToContinueOrFinish();
-
             } while (continueOrdering);
 
-
-
-
-
             #region Save Bill to JSON
-            BillSave billSave = new BillSave(bill.BillList, display.CustomerName, display.ShowBill(bill));
+            BillSave billSave = new BillSave(
+                bill.BillList,
+                display.CustomerName,
+                display.ShowBill(bill)
+            );
             #endregion
         }
     }

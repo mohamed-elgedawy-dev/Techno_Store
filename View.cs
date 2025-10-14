@@ -10,7 +10,7 @@ namespace Techno_Store
 {
     internal class View : Iinfo
     {
-      public Product Product = new Product();
+        public Product Product = new Product();
 
         public string? CustomerName { get; set; }
 
@@ -19,34 +19,23 @@ namespace Techno_Store
 
         public decimal? Total { get; set; }
 
-
         int? choice;
-
-
 
         public int? TakingId(Data data)
         {
-            List<int> productIds = data.Products
-                              .Where(p => p.Stock > 0)
-                              .Select(p => p.Id)
-                              .ToList();
+            List<int> productIds = data.Products.Where(p => p.Stock > 0).Select(p => p.Id).ToList();
             var idInput = InputValidator.AskForValidProductId(productIds);
             if (idInput != null)
-
             {
-
                 Product = data.Products.First(p => p.Id == idInput);
 
                 Console.WriteLine($"Selected product: {Product.Name},  Price: {Product.Price}");
 
                 return idInput;
-
             }
-            else            
+            else
                 return null;
-        
         }
-
 
         public void TakingAmount()
         {
@@ -60,8 +49,9 @@ namespace Techno_Store
 
             while (true)
             {
-
-                amount = InputValidator.AskForPositiveInt("Enter product amount (or 'x' to cancel): ");
+                amount = InputValidator.AskForPositiveInt(
+                    "Enter product amount (or 'x' to cancel): "
+                );
 
                 if (amount == null)
                 {
@@ -69,16 +59,16 @@ namespace Techno_Store
                     return;
                 }
 
-
                 if (amount > Product.Stock)
                 {
                     Console.WriteLine($"Insufficient stock! Only {Product.Stock} items available.");
 
                     do
                     {
-                        choice = InputValidator.AskForPositiveInt("Do you want to (1) enter another amount or (2) cancel this product): ");
-                    }
-                    while (choice != 1 && choice != 2);
+                        choice = InputValidator.AskForPositiveInt(
+                            "Do you want to (1) enter another amount or (2) cancel this product): "
+                        );
+                    } while (choice != 1 && choice != 2);
 
                     if (choice == 2)
                     {
@@ -86,20 +76,16 @@ namespace Techno_Store
                         return;
                     }
 
-                    continue; 
+                    continue;
                 }
-
                 else
                 {
                     ItemAmount = amount.Value;
                     Price = Product.Price;
-                    break; 
+                    break;
                 }
             }
-
-           
         }
-
 
         public string TakingName()
         {
@@ -124,7 +110,6 @@ namespace Techno_Store
                 }
                 else
                 {
-                   
                     break;
                 }
             }
@@ -134,14 +119,15 @@ namespace Techno_Store
             return name!;
         }
 
-
         public bool AskToContinueOrFinish()
         {
             int id;
 
             while (true)
             {
-                Console.WriteLine("\nPress 1 to add another order, or 2 to finish and see the bill:");
+                Console.WriteLine(
+                    "\nPress 1 to add another order, or 2 to finish and see the bill:"
+                );
                 string? input = Console.ReadLine();
 
                 if (int.TryParse(input, out id) && (id == 1 || id == 2))
@@ -156,5 +142,3 @@ namespace Techno_Store
         }
     }
 }
-
-

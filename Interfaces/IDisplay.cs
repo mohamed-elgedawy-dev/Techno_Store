@@ -10,6 +10,6 @@ namespace Techno_Store.Interfaces
     {
         public decimal? ShowBill(Bill bill);
 
-        public void DisplayData( Data data);
+        public void DisplayData(Data data);
     }
 }

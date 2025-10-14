@@ -14,14 +14,6 @@ namespace Techno_Store.Interfaces
 
         public string TakingName();
 
-
         public bool AskToContinueOrFinish();
-
-
-
-
-
-
-
     }
 }
