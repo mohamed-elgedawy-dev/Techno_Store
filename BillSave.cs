@@ -14,9 +14,9 @@ namespace Techno_Store
         {
             
         }
-        public BillSave(List<BillItem> list, decimal grandTotal)
+        public BillSave(List<BillItem> list,string CustomerName, decimal? grandTotal)
         {
-            string customerName = list[0].CustomerName ?? "Unknown";
+            string customerName = CustomerName ?? "Unknown";
 
             
             string fileName = $"{customerName}.json";
@@ -24,7 +24,8 @@ namespace Techno_Store
             var dataToSave = new
             {
                 Items = list,
-                GrandTotal = grandTotal
+                GrandTotal = grandTotal,
+                Name= customerName
             };
 
 
@@ -40,4 +41,4 @@ namespace Techno_Store
      
     }
 }
-// Added for full review PR
+

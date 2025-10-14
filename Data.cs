@@ -13,11 +13,7 @@ namespace Techno_Store
 
         public string filePath { get; } = Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\products.json");
 
-
-
         public List<Product> Products { get; set; } = new List<Product>();
-
-
 
         public Data()
         {
@@ -26,6 +22,14 @@ namespace Techno_Store
             Products = JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
         }
 
+
+
+        public void SaveChanges(Data data)
+        {
+            string updatedJson = JsonSerializer.Serialize(data.Products);
+            File.WriteAllText(filePath, updatedJson);
+
+        }
     }
 }
-// Added for full review PR
+

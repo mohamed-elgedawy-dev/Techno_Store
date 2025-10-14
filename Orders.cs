@@ -9,37 +9,56 @@ namespace Techno_Store
 {
     internal class Orders
     {
-        public Data data { get; set; } = new Data();
+       
    
         
+        public event EventHandler? StockFinished;
 
-
-        public void MakingOrder( int productId, int Amount)
+        public void CheckStock( int productId, int? Amount, Data data)
         {
-            
+            int? currentStock = 0;
+
             for (int i = 0; i < data.Products.Count; i++)
             {
                 if (productId == data.Products[i].Id)
                 {
 
                     data.Products[i].Stock -= Amount;
+                    currentStock = data.Products[i].Stock;
 
 
                 }
 
+            }
 
+
+            if (currentStock <= 0)
+            {
+                OnStockFinished(EventArgs.Empty);
             }
 
 
 
+
+
+
+
+
         }
 
-        public void SaveChanges()
+
+        protected virtual void OnStockFinished(EventArgs e)
         {
-            string updatedJson = JsonSerializer.Serialize(data.Products);
-            File.WriteAllText(data.filePath, updatedJson);
+            StockFinished?.Invoke(this, e);
         }
+
+        public  void Order_StockFinished(object? sender, EventArgs e)
+        {
+            Console.WriteLine("Stock finished for the selected product.");
+        }
+
+
 
     }
 }
-// Added for full review PR
+
