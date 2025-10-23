@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Techno_Store.Data;
 
 namespace Techno_Store
 {
@@ -11,16 +12,16 @@ namespace Techno_Store
     {
         public event EventHandler? StockFinished;
 
-        public void CheckStock(int productId, int? Amount, Data data)
+        public void CheckStock(int productId, int? Amount, DataServices data)
         {
             int? currentStock = 0;
-
-            for (int i = 0; i < data.Products.Count; i++)
+            var products = data.GetAllProduct();
+            for (int i = 0; i < products.Count; i++)
             {
-                if (productId == data.Products[i].Id)
+                if (productId == products[i].Id)
                 {
-                    data.Products[i].Stock -= Amount;
-                    currentStock = data.Products[i].Stock;
+                    data.GetAllProduct()[i].Stock -= Amount;
+                    currentStock = products[i].Stock;
                 }
             }
 

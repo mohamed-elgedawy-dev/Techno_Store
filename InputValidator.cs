@@ -10,21 +10,28 @@ namespace Techno_Store
 {
     internal class InputValidator
     {
+        public static string? AskIDOrToQuit()
+        {
+            string message = " Enter Product ID (or type 'x' to quit): \")";
+            Console.Write(message);
+            string? input = Console.ReadLine()?.Trim();
+            if (
+                !string.IsNullOrEmpty(input)
+                && input.Equals("x", StringComparison.OrdinalIgnoreCase)
+            )
+            {
+                return "x";
+            }
+            return input ?? string.Empty;
+        }
+
         public static int? AskForValidProductId(List<int>? validIds = null)
         {
             while (true)
             {
-                Console.Write("Enter Product ID (or type 'x' to quit): ");
-                string? input = Console.ReadLine()?.Trim();
-
-                if (
-                    !string.IsNullOrEmpty(input)
-                    && input.Equals("x", StringComparison.OrdinalIgnoreCase)
-                )
-                {
+                var input = AskIDOrToQuit();
+                if (input == null)
                     return null;
-                }
-
                 if (int.TryParse(input, out int id))
                 {
                     if (id <= 0)
@@ -54,10 +61,9 @@ namespace Techno_Store
             }
         }
 
-        public static int? AskForPositiveInt(
-            string message = "Enter a number (or type 'x' to quit): "
-        )
+        public static int? AskForPositiveInt()
         {
+            string message = "Enter a number (or type 'x' to quit): ";
             while (true)
             {
                 Console.Write(message);

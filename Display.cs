@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Techno_Store.Data;
 using Techno_Store.Interfaces;
 
 namespace Techno_Store
 {
     internal class Display : IDisplay
     {
-        public string? CustomerName { get; set; }
-
-        public void DisplayData(Data data)
+        public void DisplayData(DataServices data)
         {
             Console.WriteLine("{0,-5} | {1,-25} | {2,10} | {3,7}", "Id", "Name", "Price", "Stock");
             Console.WriteLine(new string('-', 55));
 
-            foreach (var item in data.Products)
+            foreach (var item in data.GetAllProduct())
             {
                 if (item.Stock > 0)
                 {
@@ -31,7 +30,7 @@ namespace Techno_Store
             }
         }
 
-        public decimal? ShowBill(Bill bill)
+        public void ShowBill(List<BillItem> bill, decimal? grandTotal)
         {
             Console.Clear();
 
@@ -45,7 +44,7 @@ namespace Techno_Store
             );
             Console.WriteLine(new string('-', 65));
 
-            foreach (var item in bill.BillList)
+            foreach (var item in bill)
             {
                 Console.WriteLine(
                     "{0,-25} | {1,10:N2} | {2,8} | {3,12:N2}",
@@ -56,11 +55,8 @@ namespace Techno_Store
                 );
             }
 
-            decimal? grandTotal = bill.BillList.Sum(i => i.Total);
-
             Console.WriteLine(new string('-', 65));
             Console.WriteLine($"Grand Total: {grandTotal:N2}");
-            return grandTotal;
         }
     }
 }

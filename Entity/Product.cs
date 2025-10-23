@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Techno_Store
+namespace Techno_Store.Entity
 {
     internal class Product
     {

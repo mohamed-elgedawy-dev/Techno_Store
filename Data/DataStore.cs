@@ -4,26 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Techno_Store.Entity;
 
-namespace Techno_Store
+namespace Techno_Store.Data
 {
-    internal class Data
+    internal class DataStore
     {
-        public string filePath { get; } =
-            Path.Combine(AppContext.BaseDirectory, "..\\..\\..\\products.json");
-
         public List<Product> Products { get; set; } = new List<Product>();
 
-        public Data()
+        public DataStore(string filePath)
         {
             string json = File.ReadAllText(filePath);
             Products = JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
         }
 
-        public void SaveChanges(Data data)
+        public void SaveChanges(DataPath filePath)
         {
-            string updatedJson = JsonSerializer.Serialize(data.Products);
-            File.WriteAllText(filePath, updatedJson);
+            string updatedJson = JsonSerializer.Serialize(Products);
+            File.WriteAllText(filePath.filePath, updatedJson);
         }
     }
 }

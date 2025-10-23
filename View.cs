@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Techno_Store.Data;
+using Techno_Store.Entity;
 using Techno_Store.Interfaces;
 
 namespace Techno_Store
@@ -21,13 +23,14 @@ namespace Techno_Store
 
         int? choice;
 
-        public int? TakingId(Data data)
+        public int? TakingId(DataServices data)
         {
-            List<int> productIds = data.Products.Where(p => p.Stock > 0).Select(p => p.Id).ToList();
+            var AllProducts = data.GetAllProduct();
+            var productIds = AllProducts.Where(p => p.Stock > 0).Select(p => p.Id).ToList();
             var idInput = InputValidator.AskForValidProductId(productIds);
             if (idInput != null)
             {
-                Product = data.Products.First(p => p.Id == idInput);
+                Product = AllProducts.First(p => p.Id == idInput);
 
                 Console.WriteLine($"Selected product: {Product.Name},  Price: {Product.Price}");
 
@@ -49,10 +52,8 @@ namespace Techno_Store
 
             while (true)
             {
-                amount = InputValidator.AskForPositiveInt(
-                    "Enter product amount (or 'x' to cancel): "
-                );
-
+                amount = InputValidator.AskForPositiveInt();
+                Console.WriteLine("Enter product amount (or 'x' to cancel): ");
                 if (amount == null)
                 {
                     Console.WriteLine("Operation cancelled.");
@@ -65,7 +66,8 @@ namespace Techno_Store
 
                     do
                     {
-                        choice = InputValidator.AskForPositiveInt(
+                        choice = InputValidator.AskForPositiveInt();
+                        Console.WriteLine(
                             "Do you want to (1) enter another amount or (2) cancel this product): "
                         );
                     } while (choice != 1 && choice != 2);
@@ -139,6 +141,11 @@ namespace Techno_Store
             }
             Console.Clear();
             return id == 1;
+        }
+
+        public decimal? calculateTotal(List<BillItem> bills)
+        {
+            return bills.Sum(i => i.Total);
         }
     }
 }
