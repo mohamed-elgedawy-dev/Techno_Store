@@ -10,18 +10,15 @@ namespace Techno_Store.Domain
     internal class Customer: BaseClass
     {
         public string? Name { get; set; }
-       
+
         public string? Phone { get; set; }
 
-
-        public Customer(int id, string name, string phone)
+        public Customer(string name, string phone)
         {
-            Id = id;
             Name = name;
             Phone = phone;
         }
 
-        public override string ToString()
-            => $"{Id,-5} | {Name,-20} | {Phone}";
+        public override string ToString() => $"{Id, -5} | {Name, -20} | {Phone}";
     }
 }

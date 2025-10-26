@@ -9,7 +9,27 @@ namespace Techno_Store.Domain
     internal class Order: BaseClass
     {
 
-        public List<OrderItem>? Items { get; set; }
+        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
+
+        public decimal SubTotal { get; set; }
+
+        public decimal TaxRate { get; set; }
+
+        public decimal Tax { get; set; }
+
+        public decimal Total { get; set; }
+
+
+
+
+        public void AddItem (OrderItem item)
+        {
+            
+            Items.Add(item);
+        }
+
+
+
 
     }
 }
