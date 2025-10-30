@@ -14,25 +14,22 @@ namespace Techno_Store.Domain
 
         public int Stock { get; private set; }
 
-
-        public Product( int id, string name , decimal price , int stock )
+        public Product(int id, string name, decimal price, int stock)
         {
-            
             Id = id;
             Name = name;
             Price = price;
             Stock = stock;
         }
 
-        public bool IsInStock(int quantity) 
-        { 
-            return Stock>= quantity;
+        public bool IsInStock(int quantity)
+        {
+            return Stock >= quantity;
         }
 
         public void DecreaseStock(int quantity)
         {
             Stock -= quantity;
-
         }
 
         public void IncreaseStock(int quantity)
@@ -40,9 +37,11 @@ namespace Techno_Store.Domain
             Stock += quantity;
         }
 
-        public override string ToString()
+        public void UpdateDetails(string name, decimal price, int stock)
         {
-            return $" Name: {Name}, Price: {Price}, Stock: {Stock}";
+            Name = name;
+            Price = price;
+            Stock = stock;
         }
     }
 }

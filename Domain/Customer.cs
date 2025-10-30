@@ -7,18 +7,16 @@ using System.Threading.Tasks;
 
 namespace Techno_Store.Domain
 {
-    internal class Customer: BaseClass
+    internal class Customer : BaseClass
     {
-        public string? Name { get; set; }
+        public string? Name { get; private set; }
 
-        public string? Phone { get; set; }
+        public string? Phone { get; private set; }
 
         public Customer(string name, string phone)
         {
             Name = name;
             Phone = phone;
         }
-
-        public override string ToString() => $"{Id, -5} | {Name, -20} | {Phone}";
     }
 }

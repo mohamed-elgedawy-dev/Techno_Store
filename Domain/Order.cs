@@ -6,30 +6,29 @@ using System.Threading.Tasks;
 
 namespace Techno_Store.Domain
 {
-    internal class Order: BaseClass
+    internal class Order : BaseClass
     {
-
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
 
-        public decimal SubTotal { get; set; }
+        public decimal SubTotal { get; private set; }
 
-        public decimal TaxRate { get; set; }
+        public decimal TaxRate { get; set; } = 0.15m;
 
-        public decimal Tax { get; set; }
+        public decimal Tax { get; private set; }
 
-        public decimal Total { get; set; }
+        public decimal Total { get; private set; }
 
-
-
-
-        public void AddItem (OrderItem item)
+        public void AddItem(Product product, int quantity)
         {
-            
+            var item = new OrderItem(product, quantity);
             Items.Add(item);
         }
 
-
-
-
+        public void CalculateTotals()
+        {
+            SubTotal = Items.Sum(i => i.Total);
+            Tax = SubTotal * TaxRate;
+            Total = SubTotal + Tax;
+        }
     }
 }
