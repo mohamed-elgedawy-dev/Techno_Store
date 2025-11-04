@@ -11,27 +11,16 @@ namespace Techno_Store.Domain
         public string? Name { get; private set; }
         public string? Email { get; private set; }
 
-        public Admin(string name, string email)
+        public bool HasPermission { get; private set; }
+
+        public Admin(int id, string name, string email, bool hasPermission)
         {
+            Id = id;
             Name = name;
             Email = email;
+            HasPermission = hasPermission;
         }
 
-        public Product CreateProduct(int id, string name, decimal price, int stock)
-        {
-            return new Product(id, name, price, stock);
-        }
 
-        public void UpdateProduct(Product product, string name, decimal price, int stock)
-        {
-            product.UpdateDetails(name, price, stock);
-        }
-
-        public void DeleteProduct(List<Product> products, int productId)
-        {
-            var productToDelete = products.FirstOrDefault(p => p.Id == productId);
-            if (productToDelete != null)
-                products.Remove(productToDelete);
-        }
     }
 }

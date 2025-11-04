@@ -8,11 +8,14 @@ namespace Techno_Store.Domain
 {
     internal class Order : BaseClass
     {
+
+        private const decimal TaxRate = 0.15m;
+
         public List<OrderItem> Items { get; set; } = new List<OrderItem>();
 
         public decimal SubTotal { get; private set; }
 
-        public decimal TaxRate { get; set; } = 0.15m;
+        
 
         public decimal Tax { get; private set; }
 
@@ -22,6 +25,7 @@ namespace Techno_Store.Domain
         {
             var item = new OrderItem(product, quantity);
             Items.Add(item);
+            CalculateTotals();
         }
 
         public void CalculateTotals()
