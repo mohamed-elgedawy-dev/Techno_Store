@@ -20,7 +20,7 @@ namespace Techno_Store
 
             var productService = new ProductServices(context);
 
-            productService.CreateProduct(1, "Keyboard", 1500, 20);
+            productService.CreateProduct( "Keyboard", 1500, 20);
 
 
 

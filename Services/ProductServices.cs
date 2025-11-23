@@ -25,9 +25,9 @@ namespace Techno_Store.Services
             _context = context;
         }
 
-        public Product CreateProduct(int id, string name, decimal price, int stock)
+        public Product CreateProduct( string name, decimal price, int stock)
         {
-            var product = new Product(id, name, price, stock);
+            var product = new Product(name, price, stock);
 
             _context.Products.Add(product);
             _context.SaveChanges();   
