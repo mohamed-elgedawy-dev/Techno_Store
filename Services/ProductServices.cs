@@ -6,38 +6,33 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Techno_Store.Domain;
+using Techno_Store.NewFolder;
 
 namespace Techno_Store.Services
 {
-    internal class ProductServices
+    public class ProductServices
     {
-        public HttpClient HttpClient { get; private set; } = new HttpClient();
 
-        public async Task<List<Product>?> GetProductsAsync()
+
+
+
+
+
+        private readonly AppDbContext _context;
+
+        public ProductServices(AppDbContext context)
         {
-            string url = "https://fakestoreapi.com/products";
-            string json = await HttpClient.GetStringAsync(url);
-
-            var apiProducts = JsonSerializer.Deserialize<List<ApiProduct>>(
-                json,
-                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }
-            );
-
-            if (apiProducts == null)
-                return new List<Product>();
-
-            var products = apiProducts
-                .Select(p => new Product(p.Id, p.Title, (decimal)p.Price, 50))
-                .ToList();
-
-            return products;
+            _context = context;
         }
 
-        private class ApiProduct
+        public Product CreateProduct(int id, string name, decimal price, int stock)
         {
-            public int Id { get; set; }
-            public string Title { get; set; } = string.Empty;
-            public decimal Price { get; set; }
+            var product = new Product(id, name, price, stock);
+
+            _context.Products.Add(product);
+            _context.SaveChanges();   
+
+            return product;
         }
     }
 }

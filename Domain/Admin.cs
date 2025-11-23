@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Techno_Store.Domain
 {
-    internal class Admin : BaseClass
+    public class Admin : BaseClass
     {
         public string? Name { get; private set; }
         public string? Email { get; private set; }

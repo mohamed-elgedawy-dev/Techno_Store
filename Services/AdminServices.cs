@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Techno_Store.Domain;
 
-namespace Techno_Store
+namespace Techno_Store.Services
 {
     internal class AdminServices
     {
@@ -15,10 +15,7 @@ namespace Techno_Store
 
       
 
-        public Product CreateProduct(int id, string name, decimal price, int stock)
-        {
-            return new Product(id, name, price, stock);
-        }
+      
 
         public void UpdateProduct(Product product, string name, decimal price, int stock)
         {
@@ -31,5 +28,7 @@ namespace Techno_Store
             if (productToDelete != null)
                 products.Remove(productToDelete);
         }
+
+
     }
 }

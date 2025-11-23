@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace Techno_Store.Domain
 {
-    internal class OrderItem : BaseClass
+    public class OrderItem : BaseClass
     {
         public int ProductId { get; private set; }
         public Product Product { get; private set; }
         public int Quantity { get; private set; }
         public decimal Total { get; private set; }
-
+        private OrderItem()
+        {
+            
+        }
         public OrderItem(Product product, int quantity)
         {
             Product = product;

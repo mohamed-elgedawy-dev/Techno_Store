@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Techno_Store.Domain
 {
-    internal class Order : BaseClass
+    public class Order : BaseClass
     {
 
         private const decimal TaxRate = 0.15m;
