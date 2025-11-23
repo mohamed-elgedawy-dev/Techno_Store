@@ -14,9 +14,9 @@ namespace Techno_Store.Domain
 
         public int Stock { get; private set; }
 
-        public Product(int id, string name, decimal price, int stock)
+        public Product( string name, decimal price, int stock)
         {
-            Id = id;
+            
             Name = name;
             Price = price;
             Stock = stock;

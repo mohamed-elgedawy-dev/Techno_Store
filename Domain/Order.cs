@@ -11,7 +11,13 @@ namespace Techno_Store.Domain
 
         private const decimal TaxRate = 0.15m;
 
-        public List<OrderItem> Items { get; set; } = new List<OrderItem>();
+        private List<OrderItem> _items { get; set; } = new List<OrderItem>();
+
+        public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
+
+        public Customer Customer { get; private set; }
+
+        public int CustomerId { get; private set; }
 
         public decimal SubTotal { get; private set; }
 
@@ -21,10 +27,20 @@ namespace Techno_Store.Domain
 
         public decimal Total { get; private set; }
 
+        private Order()
+        {
+            
+        }
+        public Order(Customer customer)
+        {
+            Customer = customer;
+            CustomerId = customer.Id;
+        }
+
         public void AddItem(Product product, int quantity)
         {
-            var item = new OrderItem(product, quantity);
-            Items.Add(item);
+            var item = new OrderItem(product, quantity,this);
+            _items.Add(item);
             CalculateTotals();
         }
 

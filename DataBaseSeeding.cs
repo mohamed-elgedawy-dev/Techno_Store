@@ -26,7 +26,7 @@ namespace Techno_Store
                 return new List<Product>();
 
             var products = apiProducts
-                .Select(p => new Product(p.Id, p.Title, (decimal)p.Price, 50))
+                .Select(p => new Product( p.Title, (decimal)p.Price, 50))
                 .ToList();
 
             return products;
