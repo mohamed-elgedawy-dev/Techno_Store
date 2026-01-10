@@ -6,7 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Techno_Store.Domain;
 
-namespace Techno_Store
+namespace Techno_Store.Data
 {
     internal class DataBaseSeeding
     {
@@ -26,7 +26,7 @@ namespace Techno_Store
                 return new List<Product>();
 
             var products = apiProducts
-                .Select(p => new Product( p.Title, (decimal)p.Price, 50))
+                .Select(p => new Product( p.Title, p.Price, 50))
                 .ToList();
 
             return products;

@@ -16,7 +16,7 @@ namespace Techno_Store.Domain
         public Order Order { get; private set; }
        
         public int Quantity { get; private set; }
-        public decimal Total { get; private set; }
+        public decimal Total => Product.Price * Quantity;
         private OrderItem()
         {
             
@@ -28,7 +28,7 @@ namespace Techno_Store.Domain
             Order = order;
             OrderId = Order.Id;
             Quantity = quantity;
-            Total = product.Price * quantity;
+            
         }
     }
 }

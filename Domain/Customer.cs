@@ -9,9 +9,9 @@ namespace Techno_Store.Domain
 {
     public class Customer : BaseClass
     {
-        public string? Name { get; private set; }
+        public string Name { get; private set; }
 
-        public string? Phone { get; private set; }
+        public string Phone { get; private set; }
 
         public Customer(string name, string phone)
         {

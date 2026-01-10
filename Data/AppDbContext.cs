@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Techno_Store.Domain;
 
-namespace Techno_Store.NewFolder
+namespace Techno_Store.Data
 {
     public class AppDbContext : DbContext
     {
