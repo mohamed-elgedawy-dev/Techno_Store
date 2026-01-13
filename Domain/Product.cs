@@ -27,14 +27,11 @@ namespace Techno_Store.Domain
             return Stock >= quantity;
         }
 
-        public void DecreaseStock(int quantity)
-        {
-            Stock -= quantity;
-        }
+      
 
-        public void IncreaseStock(int quantity)
+        public void UpdateStock(int quantity)
         {
-            Stock += quantity;
+            Stock = quantity;
         }
 
         public void UpdateDetails(string name, decimal price, int stock)

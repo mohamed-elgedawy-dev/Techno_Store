@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Techno_Store.Data;
 using Techno_Store.Services;
+using Techno_Store.Services.AdminServices;
 
 namespace Techno_Store
 {
@@ -13,14 +14,15 @@ namespace Techno_Store
 
 
 
+            var context = new AppDbContext();
+            var productServices = new ProductServices(context);
 
-            using var context = new AppDbContext();
+            AdminProductServices admin = new AdminProductServices(productServices);
 
-
-           var products = context.Products.ToList();
-            foreach (var product in products)
+          var p= admin.GetAll();
+            foreach  (var item in p)
             {
-                Console.WriteLine($"Product ID: {product.Id}, Name: {product.Name}, Price: {product.Price}, Stock: {product.Stock}");
+                Console.WriteLine($"{item.Id} - {item.Name} - {item.Price} - {item.Stock}");
             }
 
 

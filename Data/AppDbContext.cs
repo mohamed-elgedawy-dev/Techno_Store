@@ -15,19 +15,12 @@ namespace Techno_Store.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
 
-
-
         }
-
 
         public AppDbContext()
         {
             
         }
-
-    
-
-
 
        public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -37,9 +30,6 @@ namespace Techno_Store.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-
-
-
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             optionsBuilder.UseSqlServer(connectionString);
 
