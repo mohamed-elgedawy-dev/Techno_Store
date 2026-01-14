@@ -18,5 +18,11 @@ namespace Techno_Store.Domain
             Name = name;
             Phone = phone;
         }
+
+        internal void Update(string name, string phone)
+        {
+            Name = name;
+            Phone = phone;
+        }
     }
 }

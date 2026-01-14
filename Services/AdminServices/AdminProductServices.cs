@@ -6,15 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using Techno_Store.Application.interfaces;
 using Techno_Store.Data;
 using Techno_Store.Domain;
 using Techno_Store.DTOs;
-using static Azure.Core.HttpHeader;
 
 namespace Techno_Store.Services.AdminServices
 {
-    internal class AdminProductServices : IAdminServices<ProductDto>
+    internal class AdminProductServices 
     {
         private readonly ProductServices _productServices;
 

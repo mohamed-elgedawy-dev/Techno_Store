@@ -36,11 +36,12 @@ namespace Techno_Store.Domain
             Customer = customer;
             CustomerId = customer.Id;
         }
-        public void AddItem(Product product, int quantity)
+        public OrderItem AddItem(Product product, int quantity)
         {
             var item = new OrderItem(product, quantity,this);
             _items.Add(item);
             CalculateTotals();
+            return item;
         }
 
         public void CalculateTotals()
