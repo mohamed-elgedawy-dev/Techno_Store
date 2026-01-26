@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using Techno_Store.Data;
 using Techno_Store.Services;
 using Techno_Store.Services.AdminServices;
+using Techno_Store.UI;
 
 namespace Techno_Store
 {
@@ -9,24 +11,17 @@ namespace Techno_Store
     {
         static void Main(string[] args)
         {
+            AppDbContext context = new AppDbContext();
+
+
+            AdminServicesFacade adminServices = new AdminServicesFacade( context );
+            CustomerServicesFacade customerServices = new CustomerServicesFacade( context );
 
 
 
-
-
-            var context = new AppDbContext();
-            var productServices = new ProductServices(context);
-
-            AdminProductServices admin = new AdminProductServices(productServices);
-
-          var p= admin.GetAll();
-            foreach  (var item in p)
-            {
-                Console.WriteLine($"{item.Id} - {item.Name} - {item.Price} - {item.Stock}");
-            }
-
-
-
+            MainMainu mainMainu = new MainMainu( customerServices, adminServices );
+            mainMainu.ShowMainMenu();
+            
 
 
 

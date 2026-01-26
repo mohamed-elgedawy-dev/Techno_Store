@@ -8,9 +8,10 @@ using Techno_Store.Data;
 using Techno_Store.Domain;
 using Techno_Store.DTOs;
 
+
 namespace Techno_Store.Services
 {
-    internal class CustomerServices
+    public class CustomerServices 
     {
 
         private readonly AppDbContext _context;

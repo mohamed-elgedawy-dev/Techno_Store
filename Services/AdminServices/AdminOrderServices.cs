@@ -22,10 +22,10 @@ namespace Techno_Store.Services.AdminServices
            
         }   
 
-        public OrderDto Add(OrderDto dto)
+        public OrderDto Add(int  customerId)
         { 
           
-            return _orderServices.CreateOrder(dto.Id);
+            return _orderServices.CreateOrder(customerId);
 
         }
          

@@ -10,6 +10,7 @@ using Techno_Store.Data;
 using Techno_Store.Domain;
 using Techno_Store.DTOs;
 
+
 namespace Techno_Store.Services
 {
     public class ProductServices
@@ -61,12 +62,12 @@ namespace Techno_Store.Services
 
 
 
-        public void UpdateProductStock(int productId, int newStock)
+        public void ReduceProductStock(ProductDto productdto, int newStock)
         {
-            var product = _context.Products.Find(productId);
+            var product = ProductMapping.ToDomain(productdto);
             if (product != null)
             {
-                product.UpdateStock (newStock);
+                product.ReduceStock (newStock);
                 _context.SaveChanges();
             }
         }

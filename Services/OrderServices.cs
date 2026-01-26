@@ -8,9 +8,10 @@ using Techno_Store.Data;
 using Techno_Store.Domain;
 using Techno_Store.DTOs;
 
+
 namespace Techno_Store.Services
 {
-    internal class OrderServices
+    public class OrderServices 
     {
 
         private readonly AppDbContext _context;
@@ -59,7 +60,7 @@ namespace Techno_Store.Services
             return OrderMapping.ToDto(order);
         }
 
-        internal List<OrderDto> GetAllOrders()
+        public List<OrderDto> GetAllOrders()
         {
             var orders = _context.Orders.ToList();
             return orders.Select(OrderMapping.ToDto).ToList();
@@ -89,5 +90,9 @@ namespace Techno_Store.Services
             _context.OrderItems.Remove(orderItem);
             _context.SaveChanges();
         }
+
+      
+
+      
     }
 }

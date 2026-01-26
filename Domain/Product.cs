@@ -40,5 +40,14 @@ namespace Techno_Store.Domain
             Price = price;
             Stock = stock;
         }
+
+        public void ReduceStock(int quantity)
+        {
+            if (IsInStock(quantity))
+            {
+                Stock -= quantity;
+            }
+       
+        }
     }
 }
