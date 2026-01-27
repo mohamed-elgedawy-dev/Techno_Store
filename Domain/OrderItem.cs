@@ -11,6 +11,8 @@ namespace Techno_Store.Domain
         public int ProductId { get; private set; }
 
         public Product Product { get; private set; }
+
+        public decimal Price => Product.Price;
         public int OrderId { get; private set; }
 
         public Order Order { get; private set; }

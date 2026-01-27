@@ -21,7 +21,12 @@ namespace Techno_Store.Application.Mapping
                 Product = orderItem.Product.Name,
                 OrderId = orderItem.OrderId,
                 Quantity = orderItem.Quantity,
-                Total = orderItem.Total
+                Total = orderItem.Total,
+                Price = orderItem.Price
+
+
+
+
             };
         }
 

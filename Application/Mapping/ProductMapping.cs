@@ -22,14 +22,7 @@ namespace Techno_Store.Application.Mapping
             };
         }
 
-        public static Product ToDomain(ProductDto productDto)
-        {
-            return new Product(
-                productDto.Name,
-                productDto.Price,
-                productDto.Stock
-            );
-        }
+ 
 
 
 

@@ -62,9 +62,9 @@ namespace Techno_Store.Services
 
 
 
-        public void ReduceProductStock(ProductDto productdto, int newStock)
+        public void ReduceProductStock(int productId, int newStock)
         {
-            var product = ProductMapping.ToDomain(productdto);
+           var product = _context.Products.Find(productId);
             if (product != null)
             {
                 product.ReduceStock (newStock);

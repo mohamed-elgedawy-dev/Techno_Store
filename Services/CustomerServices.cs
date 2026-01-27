@@ -73,6 +73,14 @@ namespace Techno_Store.Services
             return CustomerMapping.ToDto(customer);
         }
 
+        public CustomerDto GetCustomerByPhone ( string phone)
+        {
+            var customer = _context.Customers.FirstOrDefault(c => c.Phone == phone);
+            if (customer == null)
+                return null;
+            return CustomerMapping.ToDto(customer);
+        }
+
 
 
 

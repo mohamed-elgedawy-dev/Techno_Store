@@ -78,6 +78,7 @@ namespace Techno_Store.Services
             order.AddItem(product, quantity);
 
             _context.SaveChanges();
+
             return OrderMapping.ToDto(order);
 
         }
@@ -91,8 +92,28 @@ namespace Techno_Store.Services
             _context.SaveChanges();
         }
 
-      
 
-      
+        public void printBill(OrderDto order)
+        {
+           
+            if (order == null)
+                return;
+            Console.WriteLine("----- Bill -----");
+            Console.WriteLine($"Order ID: {order.Id}");
+            Console.WriteLine($"Customer: {order.CustomerName}");
+            Console.WriteLine("Items:");
+            foreach (var item in order.Items)
+            {
+                Console.WriteLine($"- {item.Product.ToString()} x{item.Quantity} @ {item.Price} = {item.Total}");
+            }
+            Console.WriteLine($"Subtotal: {order.SubTotal}");
+            Console.WriteLine($"Tax: {order.Tax}");
+            Console.WriteLine($"Total: {order.Total}");
+            Console.WriteLine("----------------");
+        }
+
+
+
+
     }
 }
