@@ -51,7 +51,7 @@ namespace Techno_Store.UI
             }
             else if (choice == 2)
             {
-                AdminUI adminUI = new AdminUI();
+                AdminUI adminUI = new AdminUI(_adminServices);
                 adminUI.ShowAdminMenu();
             }
             else
