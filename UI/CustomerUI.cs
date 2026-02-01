@@ -12,12 +12,12 @@ namespace Techno_Store.UI
 
    
 
-    public class CustomerUI
+    public class CustomerUI : BaseUi<CustomerServicesFacade>
     {
         private readonly CustomerServicesFacade _Service;
 
 
-        public CustomerUI(CustomerServicesFacade Service)
+        public CustomerUI(CustomerServicesFacade Service) : base(Service)
         {
            
             _Service = Service;
@@ -28,14 +28,14 @@ namespace Techno_Store.UI
         {
 
           
+            DisplayProductsWithPagination(_Service.ProductService.GetAllProducts);
 
-         _Service.ProductService.GetAllProducts().ForEach(p =>
-            {
-                Console.WriteLine($"ID: {p.Id}, Name: {p.Name}, Price: {p.Price}, Stock: {p.Stock}");
-            });
             ShowCart();
 
         }
+
+     
+
 
 
         public CustomerDto GetOrCreateCustomer ()
