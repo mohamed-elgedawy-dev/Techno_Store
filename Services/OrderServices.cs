@@ -104,7 +104,7 @@ namespace Techno_Store.Services
             Console.WriteLine("Items:");
             foreach (var item in order.Items)
             {
-                Console.WriteLine($"- {item.Product.ToString()} x{item.Quantity} @ {item.Price} = {item.Total}");
+                Console.WriteLine($"- {item.Product.ToString()} x{item.Quantity}  {item.Price} = {item.Total}");
             }
             Console.WriteLine($"Subtotal: {order.SubTotal}");
             Console.WriteLine($"Tax: {order.Tax}");

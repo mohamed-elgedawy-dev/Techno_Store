@@ -21,7 +21,7 @@ namespace Techno_Store.Application.Mapping
                 Email = admin.Email,
                 HasPermission = admin.HasPermission
             };
-        }
+        }m
 
 
     }

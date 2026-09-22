@@ -28,7 +28,7 @@ namespace Techno_Store.Domain
             Product = product;
             ProductId = product.Id;
             Order = order;
-            OrderId = Order.Id;
+            OrderId = order.Id;
             Quantity = quantity;
             
         }
